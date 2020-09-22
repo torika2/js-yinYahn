@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body id="gameBody">
+	<div class="gameBox" id="gameBox">
+		<div id="yinYahnDiv" class="yinYahn"></div>
+	</div>
+	<div class="gameBoxWidth">
+		<label for="widthInput">Width :</label>
+		<input type="number" id="widthInput" oninput="location.reload()" placeholder="Set gamebox width">
+			<hr>
+		<label for="widthInput">Height :</label>
+		<input type="number" id="heightInput" oninput="location.reload()" placeholder="Set gamebox height">
+	</div>
+<script>
+window.addEventListener('load', function () {
+	// GameBox Size
+			let width = document.getElementById('widthInput').value;
+			let height = document.getElementById('heightInput').value;
+			let widthInputValue = (width%10 === 0)? document.getElementById('widthInput').value : 830;
+			let heightInputValue = (height%10 === 0)? document.getElementById('heightInput').value : 830;
+			let	gameBoxWidth = (widthInputValue > 0) ? widthInputValue : 830;
+			let	gameBoxHeight = (heightInputValue > 0 ) ? heightInputValue : 830;
+
+			let gameBox = document.getElementById('gameBox');
+			gameBox.style.width = `${gameBoxWidth}px`;
+			gameBox.style.height = `${gameBoxHeight}px`;
+	// ^
+
+	//Yin & Yahn Div 
+		let divMarginX = 0;
+		let divMarginY = 0;
+		let divStep = 10;	
+
+		let yinYahnDiv = document.getElementById('yinYahnDiv');
+		
+		let gameDivMarginX = yinYahnDiv.style.marginLeft;
+		yinYahnDivMovement(divMarginX ,divMarginY , yinYahnDiv, divStep, gameBoxWidth, gameBoxHeight);	
+	// ^
+function yinYahnDivMovement(divMarginX ,divMarginY , yinYahnDiv, divStep, gameBoxWidth, gameBoxHeight) {
+	document.querySelector('#gameBody').addEventListener('keydown',function(e){
+			if (e.key === 'd' && divMarginX < (gameBoxWidth-30)) {
+				divMarginX += divStep;
+				yinYahnDiv.style.marginLeft = `${divMarginX}px`;
+			}else if(e.key === 'a'){
+				if (divMarginX >= divStep && divMarginX !== 0) {
+					divMarginX -= divStep;
+					yinYahnDiv.style.marginLeft = `${divMarginX}px`;
+				}
+			}else if(e.key === 's' && divMarginY < (gameBoxHeight-30)){
+				divMarginY += divStep;
+				yinYahnDiv.style.marginTop = `${divMarginY}px`;
+			}else if(e.key === 'w' && divMarginY !== 0){
+				divMarginY -= divStep;
+				yinYahnDiv.style.marginTop = `${divMarginY}px`;
+			}
+		// console.log(e.key);
+	});
+}
+
+function foodDivRespawn() {
+	let gameBox = document.getElementById('gameBox');
+	let node = document.createElement("div");
+	node.setAttribute('id','yinYahnFood'); 
+	node.setAttribute('class','yinYahnFood');
+	gameBox.appendChild(node);
+	let foodDiv = document.getElementById('yinYahnFood');		
+	foodDiv.style.visibility = 'visible';	
+	foodDiv.style.marginLeft = `${Math.floor(Math.random() * 100)}px`
+	foodDiv.style.marginTop = `${Math.floor(Math.random() * 100)}px`
+}
+
+function score(num) {
+	console.log(num);
+}
+
+setInterval(function(){
+	foodDivRespawn();
+},5000);
+});
+
+
+</script>
+</body>
+</html>

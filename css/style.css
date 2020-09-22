@@ -1,0 +1,35 @@
+.gameBox{
+	border: solid 2px black;
+/*	width:830px;
+	height: 830px;*/
+/*	min-width: 800px;
+	max-width: 800px;*/
+	margin:auto;
+/*	min-height: 800px;
+	max-height: 800px;*/
+}
+
+.gameBox .yinYahn{
+	height: 30px;
+	width: 30px;
+	background-image: url('../images/yinyang.png');
+	background-repeat: no-repeat;
+	background-size: 30px 30px;
+	margin-left: 0px;
+}
+
+.gameBox .yinYahnFood{
+	height: 30px;
+	width: 30px;
+	background: darkred;
+	visibility: hidden;
+	position: absolute;
+	top: 10px;
+	border-radius: 100%;
+}
+
+.gameBoxWidth{
+	position: absolute;
+	top:10px;
+	left: 100px;
+}
