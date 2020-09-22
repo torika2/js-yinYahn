@@ -30,6 +30,20 @@
 
 .gameBoxWidth{
 	position: absolute;
+	visibility: hidden;
 	top:10px;
 	left: 100px;
+}
+
+.gameBoxWidth button{
+	background: green;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	height: 25px;
+	width: 60px;
+}
+
+.showOrHideButton{
+	
 }
